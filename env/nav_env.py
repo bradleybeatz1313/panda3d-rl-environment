@@ -498,3 +498,13 @@ gym.register(
     entry_point="env.nav_env:NavigationEnv",
     max_episode_steps=2000,
 )
+
+
+    def get_episode_stats(self) -> dict:
+        """Return stats about the current episode progress."""
+        return {
+            "steps": self._step_count,
+            "waypoints_reached": self._current_waypoint_idx,
+            "total_waypoints": len(self._waypoints),
+            "completion_pct": self._current_waypoint_idx / max(len(self._waypoints), 1),
+        }
