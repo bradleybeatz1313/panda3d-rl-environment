@@ -508,3 +508,9 @@ gym.register(
             "total_waypoints": len(self._waypoints),
             "completion_pct": self._current_waypoint_idx / max(len(self._waypoints), 1),
         }
+
+
+    def set_difficulty(self, num_obstacles: int, num_waypoints: int) -> None:
+        """Adjust difficulty parameters (takes effect on next reset)."""
+        self.num_obstacles = num_obstacles
+        self.num_waypoints = num_waypoints
