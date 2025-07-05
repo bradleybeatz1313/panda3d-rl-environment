@@ -514,3 +514,13 @@ gym.register(
         """Adjust difficulty parameters (takes effect on next reset)."""
         self.num_obstacles = num_obstacles
         self.num_waypoints = num_waypoints
+
+
+    def _is_on_ground(self) -> bool:
+        """Returns True if agent is at or near ground level."""
+        return self._agent_pos[2] <= 1.1
+
+    def _get_heading_vector(self) -> tuple:
+        """Returns (sin, cos) of current heading angle."""
+        import math
+        return math.sin(self._agent_heading), math.cos(self._agent_heading)
