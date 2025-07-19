@@ -202,3 +202,13 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+
+# ─── Curriculum Helper ────────────────────────────────────────────────
+
+def make_curriculum_env(stage: int):
+    """Create env with difficulty scaled to curriculum stage."""
+    obstacles = max(5, 5 + stage * 2)
+    waypoints = max(2, 2 + stage)
+    env = NavigationEnv(num_obstacles=obstacles, num_waypoints=waypoints)
+    return env
