@@ -524,3 +524,9 @@ gym.register(
         """Returns (sin, cos) of current heading angle."""
         import math
         return math.sin(self._agent_heading), math.cos(self._agent_heading)
+
+
+    def seed(self, seed: int) -> None:
+        """Re-seed the environment RNG (Gymnasium legacy API)."""
+        import numpy as np
+        self._rng = np.random.default_rng(seed)
