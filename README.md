@@ -113,3 +113,14 @@ tensorboard --logdir runs/
 ## 📄 License
 
 MIT
+
+---
+
+## Quick Start
+
+    pip install -r requirements.txt
+    python training/train.py
+
+To run with visual rendering:
+
+    python -c "from env.nav_env import NavigationEnv; e = NavigationEnv(render_mode='human'); e.reset(); [e.step(e.action_space.sample()) for _ in range(500)]"
