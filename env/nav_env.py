@@ -530,3 +530,8 @@ gym.register(
         """Re-seed the environment RNG (Gymnasium legacy API)."""
         import numpy as np
         self._rng = np.random.default_rng(seed)
+
+
+    def get_waypoint_positions(self) -> list:
+        """Return remaining waypoint positions as a list of [x, y] arrays."""
+        return [wp.tolist() for wp in self._waypoints[self._current_waypoint_idx:]]
