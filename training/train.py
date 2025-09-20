@@ -212,3 +212,10 @@ def make_curriculum_env(stage: int):
     waypoints = max(2, 2 + stage)
     env = NavigationEnv(num_obstacles=obstacles, num_waypoints=waypoints)
     return env
+
+
+def log_episode(writer, ep_num: int, total_reward: float, steps: int, wp_reached: int) -> None:
+    """Log episode stats to TensorBoard."""
+    writer.add_scalar("episode/reward", total_reward, ep_num)
+    writer.add_scalar("episode/steps", steps, ep_num)
+    writer.add_scalar("episode/waypoints_reached", wp_reached, ep_num)
