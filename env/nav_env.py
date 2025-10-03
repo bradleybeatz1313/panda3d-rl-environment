@@ -535,3 +535,12 @@ gym.register(
     def get_waypoint_positions(self) -> list:
         """Return remaining waypoint positions as a list of [x, y] arrays."""
         return [wp.tolist() for wp in self._waypoints[self._current_waypoint_idx:]]
+
+
+    def compute_reward_components(self, action) -> dict:
+        """Return a breakdown of reward components for analysis."""
+        curr_dist = self._distance_to_current_waypoint()
+        approach = (self._prev_dist - curr_dist) * 10.0
+        time_pen = -1.0
+        collision_pen = -50.0 if self._check_obstacle_collision() else 0.0
+        return {"approach": approach, "time": time_pen, "collision": collision_pen}
