@@ -219,3 +219,10 @@ def log_episode(writer, ep_num: int, total_reward: float, steps: int, wp_reached
     writer.add_scalar("episode/reward", total_reward, ep_num)
     writer.add_scalar("episode/steps", steps, ep_num)
     writer.add_scalar("episode/waypoints_reached", wp_reached, ep_num)
+
+
+def save_checkpoint(model, path: str, episode: int) -> None:
+    """Save model checkpoint with episode number in filename."""
+    import os
+    os.makedirs(path, exist_ok=True)
+    model.save(f"{path}/checkpoint_ep{episode:06d}")
