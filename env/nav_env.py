@@ -544,3 +544,8 @@ gym.register(
         time_pen = -1.0
         collision_pen = -50.0 if self._check_obstacle_collision() else 0.0
         return {"approach": approach, "time": time_pen, "collision": collision_pen}
+
+
+    def get_obstacle_positions(self) -> list:
+        """Return list of (center_x, center_y, radius) for all obstacles."""
+        return [(float(pos[0]), float(pos[1]), float(r)) for pos, r in self._obstacles]
