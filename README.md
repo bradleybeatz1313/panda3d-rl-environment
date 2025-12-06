@@ -124,3 +124,16 @@ MIT
 To run with visual rendering:
 
     python -c "from env.nav_env import NavigationEnv; e = NavigationEnv(render_mode='human'); e.reset(); [e.step(e.action_space.sample()) for _ in range(500)]"
+
+---
+
+## Observation Space
+
+| Indices | Meaning | Range |
+|---------|---------|-------|
+| 0-2 | Agent position (normalized) | [-1, 1] |
+| 3-5 | Agent velocity | [-1, 1] |
+| 6-7 | Heading (sin, cos) | [-1, 1] |
+| 8-23 | Lidar rays (16) | [0, 1] |
+| 24-26 | Target direction + altitude | [-1, 1] |
+| 27 | Distance to target (normalized) | [0, 1] |
