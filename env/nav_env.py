@@ -549,3 +549,10 @@ gym.register(
     def get_obstacle_positions(self) -> list:
         """Return list of (center_x, center_y, radius) for all obstacles."""
         return [(float(pos[0]), float(pos[1]), float(r)) for pos, r in self._obstacles]
+
+
+    def apply_action_noise(self, action, noise_std: float = 0.05):
+        """Add Gaussian noise to actions for domain randomization."""
+        import numpy as np
+        noisy = action + self._rng.normal(0, noise_std, size=action.shape)
+        return np.clip(noisy, -1.0, 1.0).astype(np.float32)
