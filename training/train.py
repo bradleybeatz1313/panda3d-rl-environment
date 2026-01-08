@@ -226,3 +226,19 @@ def save_checkpoint(model, path: str, episode: int) -> None:
     import os
     os.makedirs(path, exist_ok=True)
     model.save(f"{path}/checkpoint_ep{episode:06d}")
+
+
+def eval_policy(model, env, n_episodes: int = 10) -> dict:
+    """Evaluate policy over n episodes. Returns mean reward and success rate."""
+    rewards, successes = [], []
+    for _ in range(n_episodes):
+        obs, _ = env.reset()
+        total_r, done = 0.0, False
+        while not done:
+            action, _ = model.predict(obs, deterministic=True)
+            obs, r, term, trunc, info = env.step(action)
+            total_r += r
+            done = term or trunc
+        rewards.append(total_r)
+        successes.append(1 if info.get("waypoints_reached") == info.get("total_waypoints") else 0)
+    return {"mean_reward": sum(rewards)/len(rewards), "success_rate": sum(successes)/len(successes)}
