@@ -556,3 +556,8 @@ gym.register(
         import numpy as np
         noisy = action + self._rng.normal(0, noise_std, size=action.shape)
         return np.clip(noisy, -1.0, 1.0).astype(np.float32)
+
+
+    def export_trajectory(self) -> list:
+        """Export agent trajectory as list of position snapshots."""
+        return [pos.tolist() for pos in self._trajectory_log] if hasattr(self, "_trajectory_log") else []
