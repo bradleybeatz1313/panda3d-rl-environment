@@ -137,3 +137,17 @@ To run with visual rendering:
 | 8-23 | Lidar rays (16) | [0, 1] |
 | 24-26 | Target direction + altitude | [-1, 1] |
 | 27 | Distance to target (normalized) | [0, 1] |
+
+---
+
+## Training
+
+Uses **PPO** from Stable-Baselines3 by default:
+
+    from stable_baselines3 import PPO
+    from env.nav_env import NavigationEnv
+
+    env = NavigationEnv()
+    model = PPO("MlpPolicy", env, verbose=1, tensorboard_log="./logs/")
+    model.learn(total_timesteps=500_000)
+    model.save("panda3d_nav_ppo")
