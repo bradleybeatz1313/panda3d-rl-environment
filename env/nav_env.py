@@ -561,3 +561,11 @@ gym.register(
     def export_trajectory(self) -> list:
         """Export agent trajectory as list of position snapshots."""
         return [pos.tolist() for pos in self._trajectory_log] if hasattr(self, "_trajectory_log") else []
+
+
+    @property
+    def current_waypoint(self):
+        """Return the current target waypoint position, or None if all reached."""
+        if self._current_waypoint_idx < len(self._waypoints):
+            return self._waypoints[self._current_waypoint_idx]
+        return None
