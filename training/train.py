@@ -242,3 +242,9 @@ def eval_policy(model, env, n_episodes: int = 10) -> dict:
         rewards.append(total_r)
         successes.append(1 if info.get("waypoints_reached") == info.get("total_waypoints") else 0)
     return {"mean_reward": sum(rewards)/len(rewards), "success_rate": sum(successes)/len(successes)}
+
+
+def make_vec_env(n_envs: int = 4, seed: int = 0):
+    """Create a vectorized environment for parallel training."""
+    from stable_baselines3.common.env_util import make_vec_env as _make
+    return _make(NavigationEnv, n_envs=n_envs, seed=seed)
