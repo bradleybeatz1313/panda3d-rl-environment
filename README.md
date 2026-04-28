@@ -151,3 +151,5 @@ Uses **PPO** from Stable-Baselines3 by default:
     model = PPO("MlpPolicy", env, verbose=1, tensorboard_log="./logs/")
     model.learn(total_timesteps=500_000)
     model.save("panda3d_nav_ppo")
+
+<!-- env version: 1.1.0 | last updated 2026-04-28 -->
