@@ -7,3 +7,5 @@ tensorboard>=2.13
 pytest>=7.4
 pytest-cov>=4.1
 gymnasium>=0.29
+imageio>=2.31
+imageio-ffmpeg>=0.4.9
