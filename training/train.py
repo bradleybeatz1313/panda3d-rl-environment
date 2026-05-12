@@ -248,3 +248,14 @@ def make_vec_env(n_envs: int = 4, seed: int = 0):
     """Create a vectorized environment for parallel training."""
     from stable_baselines3.common.env_util import make_vec_env as _make
     return _make(NavigationEnv, n_envs=n_envs, seed=seed)
+
+import argparse
+
+def parse_args():
+    p = argparse.ArgumentParser(description="Train Panda3D nav agent")
+    p.add_argument("--timesteps", type=int, default=500_000)
+    p.add_argument("--seed", type=int, default=42)
+    p.add_argument("--obstacles", type=int, default=15)
+    p.add_argument("--waypoints", type=int, default=5)
+    p.add_argument("--save-path", default="models/panda3d_nav")
+    return p.parse_args()
