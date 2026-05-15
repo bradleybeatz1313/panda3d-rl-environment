@@ -569,3 +569,9 @@ gym.register(
         if self._current_waypoint_idx < len(self._waypoints):
             return self._waypoints[self._current_waypoint_idx]
         return None
+
+    def randomize_arena(self) -> None:
+        """Randomize obstacle layout without full reset (keeps agent position)."""
+        self._obstacles = self._generate_obstacles()
+        if self._setup_panda3d:
+            self._render_scene()
