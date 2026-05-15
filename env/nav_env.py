@@ -575,3 +575,8 @@ gym.register(
         self._obstacles = self._generate_obstacles()
         if self._setup_panda3d:
             self._render_scene()
+
+    def get_normalized_obs(self) -> 'np.ndarray':
+        """Return observation clipped and scaled to [-1, 1]."""
+        obs = self._get_observation()
+        return obs.clip(-1.0, 1.0)
