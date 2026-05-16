@@ -580,3 +580,12 @@ gym.register(
         """Return observation clipped and scaled to [-1, 1]."""
         obs = self._get_observation()
         return obs.clip(-1.0, 1.0)
+
+    def get_agent_position(self) -> list:
+        """Return agent world position as [x, y, z]."""
+        return self._agent_pos.tolist()
+
+    def get_agent_heading_deg(self) -> float:
+        """Return agent heading in degrees."""
+        import math
+        return math.degrees(self._agent_heading) % 360
