@@ -259,3 +259,10 @@ def parse_args():
     p.add_argument("--waypoints", type=int, default=5)
     p.add_argument("--save-path", default="models/panda3d_nav")
     return p.parse_args()
+
+def print_training_summary(model, env, n_eval: int = 5) -> None:
+    """Print a quick evaluation summary after training."""
+    results = eval_policy(model, env, n_eval)
+    print(f"\n=== Training Summary ===")
+    print(f"  Mean reward:   {results['mean_reward']:.1f}")
+    print(f"  Success rate:  {results['success_rate']*100:.0f}%")
