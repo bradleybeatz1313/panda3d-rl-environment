@@ -153,3 +153,14 @@ Uses **PPO** from Stable-Baselines3 by default:
     model.save("panda3d_nav_ppo")
 
 <!-- env version: 1.1.0 | last updated 2026-04-28 -->
+
+---
+
+## Environment Wrappers
+
+Common Gymnasium wrappers that work out of the box:
+
+- `TimeLimit(env, max_episode_steps=2000)` -- enforce step budget
+- `RecordEpisodeStatistics(env)` -- log reward and length
+- `NormalizeObservation(env)` -- zero-mean unit-variance obs
+- `VecNormalize(vec_env)` -- normalize across parallel envs
