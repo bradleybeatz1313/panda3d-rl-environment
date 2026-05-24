@@ -266,3 +266,22 @@ def print_training_summary(model, env, n_eval: int = 5) -> None:
     print(f"\n=== Training Summary ===")
     print(f"  Mean reward:   {results['mean_reward']:.1f}")
     print(f"  Success rate:  {results['success_rate']*100:.0f}%")
+
+def record_video(model, env, path: str = "videos/eval.mp4", steps: int = 500) -> None:
+    """Record a short evaluation video using moviepy."""
+    from moviepy.video.io.ImageSequenceClip import ImageSequenceClip
+    import numpy as np
+    frames = []
+    obs, _ = env.reset()
+    for _ in range(steps):
+        action, _ = model.predict(obs, deterministic=True)
+        obs, _, term, trunc, _ = env.step(action)
+        if hasattr(env, 'render'):
+            frame = env.render()
+            if frame is not None:
+                frames.append(frame)
+        if term or trunc:
+            obs, _ = env.reset()
+    if frames:
+        clip = ImageSequenceClip(frames, fps=30)
+        clip.write_videofile(path, logger=None)
