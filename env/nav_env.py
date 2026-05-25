@@ -589,3 +589,13 @@ gym.register(
         """Return agent heading in degrees."""
         import math
         return math.degrees(self._agent_heading) % 360
+
+    @property
+    def steps_remaining(self) -> int:
+        """Steps remaining before episode truncation."""
+        return max(0, self.max_steps - self._step_count)
+
+    @property
+    def completion_ratio(self) -> float:
+        """Fraction of waypoints reached this episode."""
+        return self._current_waypoint_idx / max(len(self._waypoints), 1)
