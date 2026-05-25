@@ -164,3 +164,13 @@ Common Gymnasium wrappers that work out of the box:
 - `RecordEpisodeStatistics(env)` -- log reward and length
 - `NormalizeObservation(env)` -- zero-mean unit-variance obs
 - `VecNormalize(vec_env)` -- normalize across parallel envs
+
+---
+
+## Reproducibility
+
+All experiments are fully reproducible:
+
+    python training/train.py --seed 42 --timesteps 500000
+
+Set the same seed in both the environment and the SB3 model for exact replay.
